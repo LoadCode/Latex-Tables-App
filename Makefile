@@ -2,8 +2,8 @@
 
 .PHONY: all clean
 
-OBJS       = main.o ReadXmlFile.o ChangeExt.o
-OBJS_MAIN  = ReadXmlFile.o ChangeExt.o
+OBJS       = main.o ReadXmlFile.o ChangeExt.o FileExistenceValidation.o UnzipFile.o
+OBJS_MAIN  = ReadXmlFile.o ChangeExt.o FileExistenceValidation.o UnzipFile.o
 
 
 all: $(OBJS)
@@ -19,6 +19,9 @@ ChangeExt.o:    ./sources/ChangeExt.cpp
 	g++ -Wall -c $< -o $@
 
 FileExistenceValidation.o:  ./sources/FileExistenceValidation.cpp
+	g++ -Wall -c $< -o $@
+
+UnzipFile.o: ./sources/UnzipFile.cpp
 	g++ -Wall -c $< -o $@
 
 clean:

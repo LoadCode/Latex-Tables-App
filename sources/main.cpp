@@ -1,7 +1,8 @@
 #include <iostream>
 #include <ReadXmlFile.h>
 #include <FileExistenceValidation.h>
-
+#include <UnzipFile.h>
+#include <ChangeExt.h>
 
 int main(int nargs, char * args[])
 {
@@ -19,19 +20,35 @@ int main(int nargs, char * args[])
 
 		//se cambia su extensión a .zip             (ok)
 
-		//se descomprime el .zip					 
+		//se descomprime el .zip					(ok)
 
 		//se lee el archivo content.xml             (ok)
 
-		//motor de extracción de datos
+		//motor de extracción de datos				(needed)
 
-		//se crea el archivo .TEX
+		//definición de tipos (strcuts)				(needed)
+
+		//se crea el archivo .TEX					(needed)
 
 
 
 		//check the existence of the file before we can continue
-		if(FileExistenceValidation(fileName))
+		if(!FileExistenceValidation(fileName))
+		{	std::cout << "salido en validacion de existencia"<<std::endl;
 			return -1;
+		}
+		//changes the extension of .odf file to .zip file
+		if(!ChangeExt(fileName))
+		{
+			std::cout << "salido en cambio de extension"<<std::endl;
+			return -1;
+		}
+		//perform the ZIP file extraction to .temp/ temporary folder
+		if(!UnzipFile(fileName))
+		{
+			std::cout << "salido en extraccion"<<std::endl;
+			return -1;
+		}	
 
 
 		if (ReadXmlFile(fileName,xmlContent))

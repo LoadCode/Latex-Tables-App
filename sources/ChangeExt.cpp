@@ -24,7 +24,6 @@ std::string oldExt = std::string(".odf"), std::string newExt = std::string(".zip
 
   //Compose the command line to execute
   comLine = cmd + fileName + std::string(" ") + newFile;
-  std::cout<<"linea = "<<comLine<<std::endl;
 
   
   //the function returns 0 if go well, non-zero value if something goes wrong
