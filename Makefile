@@ -1,11 +1,10 @@
 #Makefile to compile the entire project
 
-.PHONY: all clan
-SRC_DIR    = ./sources/   #sources folder containing all .cpp files
-HDR_DIR    = ./headers/   #headers folder containing all .h   files
+.PHONY: all clean
 
 OBJS       = main.o ReadXmlFile.o ChangeExt.o
 OBJS_MAIN  = ReadXmlFile.o ChangeExt.o
+
 
 all: $(OBJS)
 	g++ -Wall $(OBJS) -o LatexTables
@@ -19,6 +18,8 @@ ReadXmlFile.o:  ./sources/ReadXmlFile.cpp
 ChangeExt.o:    ./sources/ChangeExt.cpp
 	g++ -Wall -c $< -o $@
 
+FileExistenceValidation.o:  ./sources/FileExistenceValidation.cpp
+	g++ -Wall -c $< -o $@
 
 clean:
 	rm $(OBJS)

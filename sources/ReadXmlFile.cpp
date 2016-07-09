@@ -13,8 +13,9 @@ bool ReadXmlFile(std::string fileName, std::string &tmp)
 	std::ifstream inputStream;
 	inputStream.open(fileName,std::ifstream::in);
 	
-	if(inputStream.fail())  //returns false if fails on openingto open
+	if(inputStream.fail())  //returns false if fails on opening the file
 		return false;
+	
 	while(!inputStream.eof())
 	{
 		std::getline(inputStream, tmp);
