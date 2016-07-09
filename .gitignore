@@ -1,0 +1,7 @@
+#git-ignore file for the LatexTables project
+
+*.xml
+*.txt
+*.o
+ensayos/
+ensayos\ latex/
