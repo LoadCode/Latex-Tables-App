@@ -11,6 +11,7 @@ bool FileExistenceValidation(std::string &fileName)
 {
 	
 	std::ifstream inputStream;
+	inputStream.clear();
 	inputStream.open(fileName,std::ifstream::in);
 	
 	if(inputStream.fail())  //returns false if fails on opening the file

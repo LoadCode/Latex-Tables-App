@@ -2,8 +2,8 @@
 
 .PHONY: all clean
 
-OBJS       = main.o ReadXmlFile.o ChangeExt.o FileExistenceValidation.o UnzipFile.o
-OBJS_MAIN  = ReadXmlFile.o ChangeExt.o FileExistenceValidation.o UnzipFile.o
+OBJS       = main.o ReadXmlFile.o ChangeExt.o FileExistenceValidation.o UnzipFile.o TableNumberCols.o TableNumberRows.o
+OBJS_MAIN  = ReadXmlFile.o ChangeExt.o FileExistenceValidation.o UnzipFile.o TableNumberCols.o TableNumberRows.o
 
 
 all: $(OBJS)
@@ -22,6 +22,12 @@ FileExistenceValidation.o:  ./sources/FileExistenceValidation.cpp
 	g++ -Wall -c $< -o $@
 
 UnzipFile.o: ./sources/UnzipFile.cpp
+	g++ -Wall -c $< -o $@
+
+TableNumberCols.o: ./sources/TableNumberCols.cpp
+	g++ -Wall -c $< -o $@
+
+TableNumberRows.o: ./sources/TableNumberRows.cpp
 	g++ -Wall -c $< -o $@
 
 clean:

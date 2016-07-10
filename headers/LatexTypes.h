@@ -29,6 +29,7 @@ namespace lt //Namespace for Latex Types
 		int nRows;				//Number of nRows in the table
 	};
 
-}
+	
+} //end namespace
 
 #endif

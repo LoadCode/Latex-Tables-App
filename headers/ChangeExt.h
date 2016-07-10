@@ -9,6 +9,6 @@
 /*Note: <cmd> must finish with white-space for concatenation purpouses         */
 
 bool ChangeExt(std::string fileName, std::string cmd = std::string("mv "),\
-std::string oldExt = std::string(".odf"), std::string newExt = std::string(".zip"));
+std::string oldExt = std::string(".ods"), std::string newExt = std::string(".zip"));
 
 #endif

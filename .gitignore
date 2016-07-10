@@ -3,6 +3,8 @@
 *.xml
 *.txt
 *.o
+*.ods
+.temp/
 LatexTables
 ensayos/
 ensayos\ latex/
