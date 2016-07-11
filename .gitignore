@@ -1,10 +1,13 @@
 #git-ignore file for the LatexTables project
 
+*.zip
 *.xml
 *.txt
 *.o
+*.ods#
 *.ods
 .temp/
+temp*/
 LatexTables
 ensayos/
 ensayos\ latex/

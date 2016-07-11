@@ -7,6 +7,24 @@
 #include <LatexTypes.h>
 #include <TableNumberRows.h>
 #include <TableNumberCols.h>
+#include <GetCellsContent.h>
+#include <EraseTempFolder.h>
+
+
+
+void PrintTable(lt::Table &table, std::vector<lt::Cell> &cellVec)
+{
+	std::cout<<" table.nCells = "<<table.nCells<<std::endl<<std::endl;
+	std::cout<<" cellVec.size() = "<<cellVec.size()<<std::endl<<std::endl;
+
+	for(int i=0,u=0; i<table.nRows ; i++,u+=table.nCols)
+	{
+		for(int j=u; j<u+table.nCols; j++)
+			std::cout << "\t"<<cellVec[j].content;
+		std::cout<<std::endl<<std::endl;
+	}
+}
+
 
 
 int main(int nargs, char * args[])
@@ -22,12 +40,11 @@ int main(int nargs, char * args[])
 		std::string fileName(args[1]);
 		std::string zipFileName(args[1]);
 		std::string xmlContent;
-		int nCols;						  //The number of columns detected in the .odf file
-		int nRows;						  //The number of rows detected in the .odf file
-		lt::Table table;                  //The table struct
+		int nCols;						      //The number of columns detected in the .odf file
+		int nRows;						      //The number of rows detected in the .odf file
+		lt::Table table;                      //The table struct
 		std::vector<lt::Cell> cellVec;        //Vector of cell structures
 		std::vector<lt::CellStyle> styleVec;  //Vector of style structures
-		std::cout<<"archivo: "<<fileName<<std::endl;
 
 		//Se vaida la existencia del archvio .odf	  (ok)
 
@@ -45,13 +62,17 @@ int main(int nargs, char * args[])
 
 		//devolver archivo original a extension .ods  (ok)
 
-		//funcion que borre la carpeta temporal		  (needed)
+		//funcion que borre la carpeta temporal		  (ok)
 
-		//obtener el contenido de las celdas          (needed)
+		//obtener el contenido de las celdas          (ok)
+
+		//obtener el estilo de cada celda 			  (ok)
 
 		//obtener la cantidad de estilos del archivo  (needed)
 
-		//obtener los estilos                         (needed)
+		//obtener estilo fuente bold                  (needed)
+
+		//obtener estilo fuente italic                (needed)
 
 		//se crea el archivo .TEX					  (needed)
 
@@ -59,7 +80,8 @@ int main(int nargs, char * args[])
 
 		//check the existence of the file before we can continue
 		if(!FileExistenceValidation(fileName))
-		{ std::cout << "validacion de exitencia falla"<<std::endl;
+		{ 
+			std::cout << "validacion de exitencia falla"<<std::endl;
 			return -1;
 		}
 
@@ -92,10 +114,17 @@ int main(int nargs, char * args[])
 		//If true, from here all the work is done based on the xmlContent string (other files not needed)
 		if (ReadXmlFile(FullPathXmlFile,xmlContent))
 		{
+			EraseTempFolder();
 			nCols = TableNumberCols(xmlContent);
 			nRows = TableNumberRows(xmlContent);
-			std::cout<<"Ncols = "<<nCols<<std::endl;
-			std::cout<<"Mrows = "<<nRows<<std::endl;
+			table.nCols  = nCols;
+			table.nRows  = nRows;
+			table.nCells = nCols * nRows;
+			cellVec.resize(table.nCells);
+
+			GetCellsContent(cellVec, xmlContent, table.nCells);
+			
+			PrintTable(table,cellVec);
 		}	
 		else
 		{
@@ -105,3 +134,6 @@ int main(int nargs, char * args[])
 	}
 	return 0;
 }
+
+
+

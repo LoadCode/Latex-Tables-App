@@ -7,14 +7,18 @@ namespace lt //Namespace for Latex Types
 	{
 		bool italic;
 		bool strong;
-		bool center;	
+		bool alignCenter;	
+		bool alignRight;
+		bool alignLeft;
+		bool underlined;
+		bool hBackgroundColor; //do have background color?
+		bool hForegroundColor; //do have foreground color?
 	};
 
 	struct Cell
 	{
 		std::string content;
-		bool hBackgroundColor; //do have background color?
-		bool hForegroundColor; //do have foreground color?
+		int indexStyle;
 	};
 
 	struct Table
@@ -22,6 +26,7 @@ namespace lt //Namespace for Latex Types
 		std::string title;
 		std::string label;
 		std::string caption;
+		
 		bool centerInText;	
 
 		int nCells;             //Number of cells in the table
